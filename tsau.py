@@ -31,4 +31,7 @@ def tongmia(mia):
 
 
 if __name__ == '__main__':
+    if len(argv) != 2:
+        print('usage: {0} soo-tsai\ne.g. {0} /backup/'.format(argv[0]))
+        exit(1)
     main(argv[1])
