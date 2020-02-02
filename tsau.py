@@ -15,7 +15,7 @@ def main(sootsai):
     sikan = date.today().isoformat()
     bokphiau = join(sootsai, sikan)
     makedirs(bokphiau, exist_ok=True)
-    for tsua in ps.stdout.split('\n'):
+    for tsua in ps.stdout.rstrip().split('\n'):
         tsiling = docker_tsiling(tsua.rstrip(), bokphiau)
         run(tsiling, shell=True, check=True)
 
