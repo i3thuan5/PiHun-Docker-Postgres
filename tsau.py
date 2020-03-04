@@ -16,6 +16,9 @@ def main(sootsai):
     bokphiau = join(sootsai, sikan)
     makedirs(bokphiau, exist_ok=True)
     for tsua in ps.stdout.rstrip().split('\n'):
+        if tsua == '':
+            print('Bo mih-kiann')
+            return
         tsiling = docker_tsiling(tsua.rstrip(), bokphiau)
         run(tsiling, shell=True, check=True)
 
