@@ -7,6 +7,7 @@ from sys import argv
 
 
 def main(sootsai):
+    kiatko = []
     ps = run([
         'docker', 'ps',
         '--filter', 'ancestor=postgres:11',
