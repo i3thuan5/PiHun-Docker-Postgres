@@ -8,15 +8,20 @@ from sys import argv
 
 def main(sootsai):
     kiatko = []
-    ps = run([
-        'docker', 'ps',
-        '--filter', 'ancestor=postgres:11',
-        '--format', '{{.Names}}'
-    ], stdout=PIPE, encoding='utf-8', check=True)
+    for panpun in [11, 12]:
+        kiatko.append(
+            run([
+                'docker', 'ps',
+                '--filter', 'ancestor=postgres:{}'.format(panpun),
+                '--format', '{{.Names}}'
+            ], stdout=PIPE, encoding='utf-8', check=True)
+            .stdout
+            .strip()
+        )
     sikan = date.today().isoformat()
     bokphiau = join(sootsai, sikan)
     makedirs(bokphiau, exist_ok=True)
-    for tsua in ps.stdout.rstrip().split('\n'):
+    for tsua in '\n'.join(kiatko).split('\n'):
         if tsua == '':
             print('Bo mih-kiann')
             return
