@@ -18,6 +18,8 @@ def main(sootsai):
             .stdout
             .strip()
         )
+        if kiatko[-1] == '':
+            kiatko.pop()
     sikan = date.today().isoformat()
     bokphiau = join(sootsai, sikan)
     makedirs(bokphiau, exist_ok=True)
@@ -25,6 +27,7 @@ def main(sootsai):
         if tsua == '':
             print('Bo mih-kiann')
             return
+        print('Pī-hūn', tsua)
         tsiling = docker_tsiling(tsua.rstrip(), bokphiau)
         run(tsiling, shell=True, check=True)
 
